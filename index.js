@@ -12,8 +12,8 @@ const routerAuth = require("./routes/authRoute");
 dotenv.config();
 const cors = require("cors");
 const routerComment = require("./routes/commentRoute");
-// const PORT = process.env.PORT;
-const port =3000
+const PORT = process.env.PORT;
+// const port =3000
 
 const app = express();
 app.use(express.json());
@@ -26,8 +26,8 @@ app.use("/api/hr",routerHr);
 app.use("/api/comment",routerComment)
 
 app.use("/api/auth",routerAuth)
-app.listen(port,()=>{
-    console.log("Listening to the port",port);
+app.listen(PORT,()=>{
+    console.log("Listening to the port",PORT);
 })
 
 mongo_connect();
