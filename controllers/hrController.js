@@ -14,12 +14,14 @@ const hashedPassword =await bcrypt.hash(password,salt);
 exports.hrSignIn = async(req,res) =>{
     try{
             const {username,password} = req.body;
+            console.log(password)
+            console.log(username)
             const hr = await Hr.findOne({username:username});
             if(!hr){
                 return res.status(400).json("Invalid user credentials");
             }
-            const out = bcrypt.compare(password,hr.password);
-
+            const out =await bcrypt.compare(password,hr.password);
+            console.log(out)
             if(!out){
                 return res.status(400).json("Invalid Credentials");
             }

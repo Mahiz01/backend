@@ -5,5 +5,5 @@ const auth = require("../middlewares/auth");
 const router = express.Router();
 router.post("/addTask",addTask);
 router.get("/getTask",auth,getAllTask);
-router.post("/gettaskbyId",getTaskById);
+router.get("/gettaskbyId/:id",auth,getTaskById);
 module.exports= router;

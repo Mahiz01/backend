@@ -9,10 +9,10 @@ exports.Login = async(req,res)=>{
 
         let hr = await Hr.findOne({username:username});
         if(hr){
-            let passwordValidation = bcrypt.compare(password,hr.password);
-            
+            let passwordValidation = await bcrypt.compare(password,hr.password);
+            console.log(passwordValidation);
             if(!passwordValidation){
-                res.status(400).json("Invalid Credentials")
+               return res.status(400).json("Invalid Credentials")
             }
             const Secrete_key = "85154523154";
             let token = jwt.sign({username:hr.username}, Secrete_key,{expiresIn:'20h'})
@@ -24,10 +24,10 @@ exports.Login = async(req,res)=>{
         }
         let emp = await Employee.findOne({username:username});
         if(emp){
-            let passwordValidation = bcrypt.compare(password,emp.password);
+            let passwordValidation = await bcrypt.compare(password,emp.password);
             
             if(!passwordValidation){
-                res.status(400).json("Invalid Credentials")
+               return res.status(400).json("Invalid Credentials")
             }
             const Secrete_key = "85154523154";
             let token = jwt.sign({username:emp.username}, Secrete_key,{expiresIn:'20h'})

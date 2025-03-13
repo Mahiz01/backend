@@ -42,17 +42,17 @@ res.status(200).json(task);
 
 exports.getTaskById = async(req,res)=>{
     try{
-        // let u = req.user;
-        // console.log(u.username)
+        let u = req.user;
+        console.log(u.username)
         // const hr = await Hr.findOne({username:u.username})
-        // const employee = await Employee.findOne({username:u.username})
+        const employee = await Employee.findOne({username:u.username})
 
-        // if(!hr && !employee){
-        //     return res.status(400).json("Invalid Authorization ");
-        // }
-        let id = req.body;
+        if( !employee){
+            return res.status(400).json("Invalid Authorization ");
+        }
+        let id = req.params.id;
         console.log(id)
-        const task = await Task.findOne({_id:id.tid}).populate("project");
+        const task = await Task.findOne({_id:id}).populate("project");
         console.log(task);
         res.status(200).json(task);
     }
