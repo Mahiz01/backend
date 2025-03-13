@@ -4,7 +4,7 @@ dotenv.config()
 const URL = process.env.MONGO_URI;
 const mongo_connect = async() =>{
     try{
-        mongoose.connect(URL);
+        mongoose.connect("mongodb+srv://shaikmahiz56:shaikmahiz56@cluster0.wxmke.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
     console.log("Connected");
     }
     catch(e){
