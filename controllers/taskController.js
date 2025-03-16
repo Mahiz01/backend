@@ -61,3 +61,19 @@ console.log(e);
     }
 
 }
+
+exports.updateTaskStatusById = async(req,res)=>{
+    try{
+        let id = req.params.id;
+        let task = await Task.findOne({_id:id});
+        if(!task){
+            return res.status(500).json("No such task");
+        }
+        task.status="archieve";
+        task = await task.save(task)
+        return res.status(200).json(task);
+    }
+    catch(e){
+        console.log(e);
+    }
+}

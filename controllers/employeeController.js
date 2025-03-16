@@ -156,3 +156,24 @@ exports.getEmployeeByToken = async(req,res) =>{
 
     }
 }
+
+exports.updateEmployee = async(req,res)=>{
+    try{
+        let empObj = req.body;
+        let emp = await Employee.findOne({username:empObj.username})
+        if(!emp){
+            return res.status(400).json("No such Employee")
+        }
+        emp.name = empObj.name;
+        emp.jobTitle = empObj.jobTitle;
+
+        emp.city = empObj.city;
+        emp.salary = empObj.salary;
+
+        await emp.save();
+        res.status(emp);
+    }
+    catch(e){
+console.log(e);
+    }
+}
